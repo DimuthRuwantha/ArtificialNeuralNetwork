@@ -34,4 +34,4 @@ if __name__ == '__main__':
     test_service = Testing()
     test_service.testing_network(test_data, sn0, sn1)
 
-   # print(yy)
+    print(yy)
