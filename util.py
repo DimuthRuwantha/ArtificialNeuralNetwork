@@ -10,7 +10,7 @@ def file_reader():
     """
     training = []
     testing = []
-    data_split_ratio = 0.98
+    data_split_ratio = 0.94
     root_path = 'data/'
     # top_view file_names
     file_names = [file_name for file_name in os.listdir(root_path)]
@@ -45,5 +45,5 @@ def load_data_set(filename, split_ratio, training_set=[], testing_set=[]):
             iterator += 1
     return training_set, testing_set
 
-if __name__ == "__main__":
-    file_reader()
+# if __name__ == "__main__":
+#     file_reader()
