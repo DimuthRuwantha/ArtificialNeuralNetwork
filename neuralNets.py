@@ -1,5 +1,4 @@
 import numpy as np
-import prettyprint
 from testing.Testing import Testing
 
 from training.TrainingNetwork import TrainingNetwork
@@ -7,7 +6,6 @@ import util
 
 
 def get_matrices(training_set=[]):
-
     matrix_list = []
     output_list = []
     for lst in training_set:
@@ -68,10 +66,10 @@ def check_accuracy(results, output):
                 accuracy += 1
     print('total no of inputs : ', output_length)
     print("Accurately predicted : ", accuracy)
-    return (accuracy/output_length)*100
+    return (accuracy / output_length) * 100
+
 
 if __name__ == '__main__':
-
     training, testing, classes = util.file_reader()
     input_matrix1, output_matrix1 = get_matrices(testing)
 
@@ -98,19 +96,17 @@ if __name__ == '__main__':
                               [1, 0, 1, 1]])
 
     ann_training = TrainingNetwork()
-    y, sn0, sn1 = ann_training.training_network(input_matrix, output_matrix)
-    yy = np.round(y, 2)
+    y, weights_input_hidden, weights_hidden_output = ann_training.training_network(input_matrix, output_matrix)
+    y_rounded = np.round(y, 2)
     print("weights from 1st layer to hidden layer:")
-    print(sn0)
+    print(weights_input_hidden)
     print("weights from hidden layer to output layer:")
-    print(sn1)
+    print(weights_hidden_output)
 
-    test_data = input_matrix1   # np.array([1.188, 0.205, 0.205, 0.985, 7.187, 7.855])    # B to C to Grd
+    test_data = input_matrix1  # np.array([1.188, 0.205, 0.205, 0.985, 7.187, 7.855])    # B to C to Grd
     test_service = Testing()
-    result = test_service.testing_network(test_data, sn0, sn1)
+    result = test_service.testing_network(test_data, weights_input_hidden, weights_hidden_output)
     result = np.round(result)
 
     accur = check_accuracy(result, output_matrix1)
     print(accur)
-
-
